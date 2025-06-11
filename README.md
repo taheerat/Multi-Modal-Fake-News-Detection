@@ -31,4 +31,4 @@ A prototype system for detecting real vs. fake news by combining text, image and
 
 Here’s how our model works:
 
-![Multi-Modal Fake News Model](full pipeline.png)
+![Multi-Modal Fake News Model](images/full pipeline.png)
