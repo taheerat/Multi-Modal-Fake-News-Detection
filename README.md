@@ -27,11 +27,8 @@ A prototype system for detecting real vs. fake news by combining text, image and
 - **Comprehensive Evaluation**  
   Precision, recall, F1-score and overall accuracy (e.g. 91.4%) via `sklearn.metrics`  
 
----
+## Architecture Diagram
 
-## ⚙️ Installation & Setup
+Here’s how our model works:
 
-1. Clone this repo  
-   ```bash
-   git clone https://github.com/your-username/Multi-Modal-Fake-News-Detection.git
-   cd Multi-Modal-Fake-News-Detection
+![Multi-Modal Fake News Model](images/diagram.png)
