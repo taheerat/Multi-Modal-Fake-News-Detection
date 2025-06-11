@@ -1,30 +1,37 @@
-# Multi-Modal-Fake-News-Detection
-A multi-modal fake news detection model that uses BERT for text, ResNet for images, and R3D for videos to classify content as real or fake. It supports live inputs from Instagram, YouTube, and web articles with automatic content extraction and provides real-time predictions with accuracy metrics.
-This model is designed to detect fake news using multi-modal inputs—specifically text, images, and video data—and can classify content as either real or fake. It is implemented in a Google Colab environment and supports live user input from URLs such as Instagram posts, YouTube links, and news/blog articles.
+# Multi-Modal Fake News Detection
 
-🔍 Key Features:
+A prototype system for detecting real vs. fake news by combining text, image and video analysis in a single pipeline. Built in Google Colab (and runnable locally), it ingests URLs or local files—Instagram posts, YouTube links, web articles, images and videos—extracts content automatically, and issues real-time “REAL” / “FAKE” predictions via two complementary inference engines:  
 
-Textual Analysis using a pre-trained BERT model to understand the semantics of the claim or caption.
-Image Understanding through a fine-tuned ResNet-18 backbone for contextual visual cues.
-Video Understanding using a 3D CNN (R3D-18) model trained on the Kinetics-400 dataset to capture motion and temporal consistency.
-Fusion Architecture that combines embeddings from all three modalities and uses a classification head to predict real vs. fake.
-Dynamic Content Extraction from:
-Instagram captions via Instaloader + fallback HTML scraping
-News articles via newspaper3k
-YouTube (planned for transcript support)
-Robust Evaluation with sklearn's classification report (precision, recall, F1-score).
-Live Inference Mode that accepts direct user input or links, extracts content, and performs prediction with instant feedback.
-📊 Dataset Handling:
+1. **PyTorch Classifier**  
+   - Text: DistilBERT tokenizer + encoder  
+   - Images: fine-tuned ResNet-18 backbone  
+   - Video: R3D-18 3D-CNN feature extractor  
+   - Fusion: concatenation of modality embeddings + final FC head  
 
-Accepts a CSV or dataframe format with:
-text: Caption or article text
-image_path: Local image path (optional)
-video_path: Local video path (optional)
-label: "real" or "fake"
-Augments the dataset with additional annotated Instagram links for domain-specific accuracy improvement.
-🛠 Training Details:
+2. **LLM Second Opinion**  
+   - Prompts routed to Google’s Gemini 1.5 Flash via LangChain  
+   - Returns a binary decision plus a natural-language rationale  
 
-Loss Function: CrossEntropyLoss
-Optimizer: Adam
-Device: Supports both GPU and CPU
-Model Checkpointing: Saves the best model as best_model.pt
+---
+
+## 🔍 Key Features
+
+- **Live URL Extraction**  
+  - Instagram via Instaloader (with HTML fallback)  
+  - News articles via newspaper3k  
+  - YouTube transcript support planned  
+- **Multi-Modal Fusion**  
+  Combines semantic, visual and temporal cues for robust classification  
+- **Real-Time Inference**  
+  Interactive prompts for URLs or local files, with instant feedback  
+- **Comprehensive Evaluation**  
+  Precision, recall, F1-score and overall accuracy (e.g. 91.4%) via `sklearn.metrics`  
+
+---
+
+## ⚙️ Installation & Setup
+
+1. Clone this repo  
+   ```bash
+   git clone https://github.com/your-username/Multi-Modal-Fake-News-Detection.git
+   cd Multi-Modal-Fake-News-Detection
